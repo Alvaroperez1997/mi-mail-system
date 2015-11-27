@@ -11,19 +11,19 @@ public class MailItem
     // Almacena para quien va el correo
     private String to;
     // Almacena el asunto del mensaje
-    private String asunto;
+    private String subject;
     // Almacena el cuerpo del mensaje
     private String message;
 
     /**
      * Constructor for objects of class MailItem
      */
-    public MailItem(String de, String para, String asunto, String mensaje)
+    public MailItem(String from, String to, String subject, String menssage)
     {
-        from = de;
-        to = para;
-        this.asunto = asunto;
-        message = mensaje;
+        this.from = from;
+        this.to = to;
+        this.subject = subject;
+        this.message = menssage;
     }
 
     /**
@@ -47,7 +47,7 @@ public class MailItem
      */
     public String getAsunto()
     {
-        return asunto;
+        return subject;
     }
     
     /**
@@ -65,7 +65,7 @@ public class MailItem
     {
         System.out.println("De: " + from);
         System.out.println("Para: " + to);
-        System.out.println("Asunto: " + asunto);
+        System.out.println("Asunto: " + subject);
         System.out.println("Mensaje: " + message);
     }
 }

@@ -53,9 +53,9 @@ public class MailClient
      * Permite redactar un email indicando el destinatario y el
 	 * cuerpo del mensaje y enviarlo al servidor
      */
-    public void sendMailItem( String to, String asunto, String message)
+    public void sendMailItem( String to, String subject, String message)
     {
-        MailItem email = new MailItem(user, to, asunto, message);
+        MailItem email = new MailItem(user, to, subject, message);
         server.post(email);
     }
 }
