@@ -14,17 +14,17 @@ public class MailClient
     /**
      * Constructor for objects of class MailClient
      */
-    public MailClient( MailServer servidorX, String usuarioX)
+    public MailClient( MailServer server, String user)
     {
-        user = usuarioX;
-        server = servidorX;
+        this.user = user;
+        this.server = server;
     }
 
     /**
      * Recupera del servidor el siguiente email destinado
-	 * al usuario que esta usando el cliente. Si no hay 
-	 * ningun email pendiente de ser descargado devuelve null; si
-	 * lo hay, devuelve el email.
+     * al usuario que esta usando el cliente. Si no hay 
+     * ningun email pendiente de ser descargado devuelve null; si
+     * lo hay, devuelve el email.
      */
     public MailItem getNextMailItem()
     {
@@ -37,10 +37,13 @@ public class MailClient
     public void printNextMailItem()
     {
         MailItem email = getNextMailItem();
+        int count = 0;
         if (email != null)
         {
             //Imprimimos los detalles del email
             email.print();
+            count++;
+            System.out.println("El numero de mnsajes es: " + count);
         }
         else
         {
@@ -51,7 +54,7 @@ public class MailClient
     
     /**
      * Permite redactar un email indicando el destinatario y el
-	 * cuerpo del mensaje y enviarlo al servidor
+     * cuerpo del mensaje y enviarlo al servidor
      */
     public void sendMailItem( String to, String subject, String message)
     {

@@ -18,12 +18,12 @@ public class MailItem
     /**
      * Constructor for objects of class MailItem
      */
-    public MailItem(String from, String to, String subject, String menssage)
+    public MailItem(String from, String to, String subject, String message)
     {
         this.from = from;
         this.to = to;
         this.subject = subject;
-        this.message = menssage;
+        this.message = message;
     }
 
     /**
@@ -45,7 +45,7 @@ public class MailItem
     /**
      * Devuelve el asunto del mensaje
      */
-    public String getAsunto()
+    public String getSubject()
     {
         return subject;
     }

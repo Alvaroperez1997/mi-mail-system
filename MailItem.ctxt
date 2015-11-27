@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.params=from\ to\ subject\ menssage
+comment0.params=from\ to\ subject\ message
 comment0.target=MailItem(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ MailItem\r\n
 comment1.params=
@@ -9,7 +9,7 @@ comment2.params=
 comment2.target=java.lang.String\ getTo()
 comment2.text=\r\n\ Devuelve\ el\ usuario\ para\ quien\ iba\ destinado\ el\ mensaje\r\n
 comment3.params=
-comment3.target=java.lang.String\ getAsunto()
+comment3.target=java.lang.String\ getSubject()
 comment3.text=\r\n\ Devuelve\ el\ asunto\ del\ mensaje\r\n
 comment4.params=
 comment4.target=java.lang.String\ getMessage()
