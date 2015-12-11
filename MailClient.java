@@ -10,6 +10,10 @@ public class MailClient
     private MailServer server;
     // representa la dirección de correo del usuario que usa ese cliente
     private String user;
+    // Almacena el ultimo mensaje recibido
+    private MailItem lastMail;
+    // Almacena los spams
+    private boolean spam;
 
     /**
      * Constructor for objects of class MailClient
@@ -18,17 +22,22 @@ public class MailClient
     {
         this.user = user;
         this.server = server;
+        lastMail = null;
     }
-
+        
     /**
      * Recupera del servidor el siguiente email destinado
      * al usuario que esta usando el cliente. Si no hay 
      * ningun email pendiente de ser descargado devuelve null; si
-     * lo hay, devuelve el email.
+     * lo hay, devuelve el email
      */
     public MailItem getNextMailItem()
-    {
-        return server.getNextMailItem(user);
+    { 
+        MailItem email = server.getNextMailItem(user);
+        if (email != null) {
+            lastMail = email;
+        }
+        return email;
     }
     
     /**
@@ -37,13 +46,18 @@ public class MailClient
     public void printNextMailItem()
     {
         MailItem email = getNextMailItem();
-        int count = 0;
         if (email != null)
         {
-            //Imprimimos los detalles del email
-            email.print();
-            count++;
-            System.out.println("El numero de mnsajes es: " + count);
+            if (email.getMessage().contains("trabajo")) {
+                spam = false;
+                //Imprimimos los detalles del email
+                email.print();
+            }
+            else if (email.getMessage().contains("regalo") || email.getMessage().contains("promocion")) {
+                spam = true;
+                System.out.println("El correo tiene spam");
+                email = null;
+            }
         }
         else
         {
@@ -60,5 +74,41 @@ public class MailClient
     {
         MailItem email = new MailItem(user, to, subject, message);
         server.post(email);
+    }
+    
+    /**
+     * Muestra por pantalla el numero de mensajes pendientes de
+     * descargar en el servidor para el usuario actual
+     */
+    public void howManyMailItemsIHave()
+    {
+        System.out.println("Emails pendientes en el servidor: " + server.howManyMailItems(user));
+    }
+    
+    /**
+     * Recibe un correo y responde automaticamente indicando
+     * que estamos fuera de la oficina
+     */
+    public void getNextMailItemAndAutomaticRespond()
+    {
+        MailItem email = getNextMailItem();
+        if (email != null)
+        {
+            sendMailItem(email.getFrom(), "No estoy en la oficina. " + email.getMessage(), "RE: " + email.getSubject());
+        }
+    }
+    
+    /**
+     * Muestra por pantalla los datos del ultimo email recibido.
+     * En caso de no haber recibido aun ningun email, informa de ello.
+     */
+    public void muestraUltimoEmail() 
+    {
+        if(lastMail != null) {
+            lastMail.print();
+        }
+        else {
+            System.out.println("No hay ningún mensaje.");
+        }
     }
 }
