@@ -14,6 +14,14 @@ public class MailClient
     private MailItem lastMail;
     // Almacena los spams
     private boolean spam;
+    // Almacena los mensajes enviados
+    private float mensajesEnviados;
+    // Almacena los mensajes recibidos
+    private float mensajesRecibidos;
+    // Almacena el numero de mensajes con spam
+    private float mensajesSpam;
+    // Almacena el porcentaje de mensajes con spam
+    private float porcentajeSpam;
 
     /**
      * Constructor for objects of class MailClient
@@ -110,5 +118,17 @@ public class MailClient
         else {
             System.out.println("No hay ningún mensaje.");
         }
+    }
+    
+    /**
+     * mostrar por pantalla unas estadísticas que incluyan el número de mensajes enviados
+     * el número de mensajes recibidos
+     * el número de mensajes que son spam
+     * el porcentaje de spam
+     * y la dirección de la persona que nos envío el mensaje más largo junto con cuantos caracteres tenía ese mensaje.
+     */
+    public void showStats()
+    {
+        mensajesEnviados = mensajesEnviados + MailItem.getMessage();
     }
 }
